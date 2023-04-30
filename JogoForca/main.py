@@ -3,6 +3,8 @@ from funcoes import limpaTela,jogoForca,convertAst
 while True:
     limpaTela()
     jogoForca()
+    
+
 
     while True:
         desafiante = input("Digite o nome do desafiante: ").strip()
@@ -56,9 +58,13 @@ while True:
     while True:
             if '*' not in letrasAcertadas:
                 print("Parabéns o vencedor é: " + competidor)
+                vencedor = competidor
+                perdedor = desafiante
                 break
             elif chances == 0:
                 print("Suas chances acabaram o vencedor é: " + desafiante)
+                vencedor = desafiante
+                perdedor = competidor
                 break
             
             letra = input("Digite uma letra ou (2) para uma dica: ")
@@ -82,11 +88,29 @@ while True:
                 print("Erros: "+ str(erros))
                 print("Tentativas restantes: "+ str(chances))
 
-    print("O jogo acabou")
-    
+
+    try:
+        arquivo = open("historico_partidas.txt","a")
+        arquivo.write("\nPalavra: "+ palavraChave + "   Vencedor: " + vencedor +"   Perdedor: " + perdedor)
+        arquivo.close()
+        
+    except:
+        print("Arquivo não encontrado")
+
+    print("O jogo acabou\n")
+
+
+    try:
+        arquivo = open("historico_partidas.txt")
+        historico = arquivo.read()
+        print(historico)
+    except:
+        print("Arquivo não encontrado")
+
+
     while True:
         try:
-            continuar = int(input("Você deseja recomeçar o jogo? (1)Sim (0)Não"))
+            continuar = int(input("\nVocê deseja recomeçar o jogo? (1)Sim (0)Não"))
         
             if continuar == 0 or continuar == 1:
                 break
