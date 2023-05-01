@@ -62,12 +62,15 @@ while True:
                 perdedor = desafiante
                 break
             elif chances == 0:
-                print("Suas chances acabaram o vencedor é: " + desafiante)
+                print("\nSuas chances acabaram o vencedor é: " + desafiante)
                 vencedor = desafiante
                 perdedor = competidor
                 break
             
-            letra = input("Digite uma letra ou (2) para uma dica: ")
+            letra = input("\nDigite uma letra ou (2) para uma dica: ")
+            while len(letra) != 1:
+                print(("\nCampos vazios ou mais de uma letra não são permitidos: "))
+                letra = input("\nDigite apenas uma letra: ")
             if letra == '2' and dicas != 0:
                 print("A dica é: " + dadosDicas[dados]) 
                 dados += 1
@@ -84,7 +87,7 @@ while True:
             else:
                 erros += 1
                 chances -=1
-                print("Essa palavra não tem essa letra")
+                print("\nEssa palavra não tem essa letra")
                 print("Erros: "+ str(erros))
                 print("Tentativas restantes: "+ str(chances))
 
@@ -97,11 +100,11 @@ while True:
     except:
         print("Arquivo não encontrado")
 
-    print("O jogo acabou\n")
+    print("\nO jogo acabou\n")
 
 
     try:
-        arquivo = open("historico_partidas.txt")
+        arquivo = open("historico_partidas.txt", encoding="utf-8")
         historico = arquivo.read()
         print(historico)
     except:
@@ -115,12 +118,13 @@ while True:
             if continuar == 0 or continuar == 1:
                 break
             else:
-                print("Numero incorreto, digite (1) para continuar ou (0) para terminar o jogo")
+                print("\nNúmero incorreto, digite (1) para continuar ou (0) para terminar o jogo")
 
         except:
-            print("O valor digitado é inválido, digite (1) para continuar ou (0) para terminar o jogo")
+            print("\nO valor digitado é inválido, digite (1) para continuar ou (0) para terminar o jogo")
 
     if continuar == 0:
+        print("\nObrigado por jogar!!!")
         break
 
 
